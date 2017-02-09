@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">GoodGames Application</string>
-    <string name="edit_message">Wpisz imię</string>
-    <string name="button_send">Zrobione</string>
+    <string name="edit_message">Imię</string>
+    <string name="button_send">OK</string>
+    <string name="introduction_request">Jak masz na imię?</string>
 </resources>
