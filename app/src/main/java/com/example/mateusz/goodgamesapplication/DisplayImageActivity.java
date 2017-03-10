@@ -3,32 +3,34 @@ package com.example.mateusz.goodgamesapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.TextView;
 
 public class DisplayImageActivity extends AppCompatActivity
         implements View.OnTouchListener
 {
     private String _name;
+    private MediaPlayer _mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
 
-        ImageView iv = (ImageView) findViewById (R.id.imageView);
+        ImageView iv = (ImageView) findViewById (R.id.imageViewDown);
         if (iv != null) {
             iv.setOnTouchListener (this);
         }
 
         Intent intent = getIntent();
         _name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+        _mp = MediaPlayer.create(this, R.raw.ring01);
 /*
         TextView textView = new TextView(this);
         textView.setTextSize(40);
@@ -48,9 +50,10 @@ public class DisplayImageActivity extends AppCompatActivity
             case MotionEvent.ACTION_DOWN :
                 break;
             case MotionEvent.ACTION_UP :
-                int touchColor = getHotspotColor (R.id.imageViewMask, evX, evY);
+                int touchColor = getHotspotColor (R.id.imageViewMaskDown, evX, evY);
                 int tolerance = 25;
                 if (closeMatch (Color.RED, touchColor, tolerance)) {
+                    _mp.start();
                     toast ("Brawo " + _name + "!");
 
                 } else {
