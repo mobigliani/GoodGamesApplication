@@ -54,7 +54,7 @@ public class DisplayImageActivity extends AppCompatActivity
                 int tolerance = 25;
                 if (closeMatch (Color.RED, touchColor, tolerance)) {
                     _mp.start();
-                    toast ("Brawo " + _name + "!");
+                    toast ("Brawo " + _name + "!!");
 
                 } else {
                 }
