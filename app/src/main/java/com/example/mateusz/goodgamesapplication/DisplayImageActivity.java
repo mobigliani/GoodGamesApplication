@@ -17,18 +17,53 @@ public class DisplayImageActivity extends AppCompatActivity
     private String _name;
     private MediaPlayer _mp;
 
+    private TouchImageView _topImage;
+    private TouchImageView _topImageMask;
+    private TouchImageView _bottomImage;
+    private TouchImageView _bottomImageMask;
+
+    private boolean _syncImages = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
 
-        ImageView iv = (ImageView) findViewById (R.id.imageViewDown);
-        if (iv != null) {
-            iv.setOnTouchListener (this);
-        }
-
         Intent intent = getIntent();
         _name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        _syncImages = ! intent.getBooleanExtra(MainActivity.HARD_CHECKED, true);
+
+        _topImage = (TouchImageView) findViewById (R.id.imageViewUp);
+        _topImageMask = (TouchImageView) findViewById (R.id.imageViewMaskUp);
+        _bottomImage = (TouchImageView) findViewById (R.id.imageViewDown);
+        _bottomImageMask = (TouchImageView) findViewById (R.id.imageViewMaskDown);
+        if (_bottomImage != null) {
+            _bottomImage.setOnTouchListener (this);
+        }
+
+        _topImage.setOnTouchImageViewListener(new TouchImageView.OnTouchImageViewListener() {
+
+            @Override
+            public void onMove() {
+                _topImageMask.setZoom(_topImage);
+                if (_syncImages) {
+                    _bottomImage.setZoom(_topImage);
+                    _bottomImageMask.setZoom(_topImage);
+                }
+            }
+        });
+
+        _bottomImage.setOnTouchImageViewListener(new TouchImageView.OnTouchImageViewListener() {
+
+            @Override
+            public void onMove() {
+                _bottomImageMask.setZoom(_bottomImage);
+                if (_syncImages) {
+                    _topImage.setZoom(_bottomImage);
+                    _topImageMask.setZoom(_bottomImage);
+                }
+            }
+        });
 
         _mp = MediaPlayer.create(this, R.raw.ring01);
 /*
@@ -46,6 +81,12 @@ public class DisplayImageActivity extends AppCompatActivity
 
         final int evX = (int) ev.getX();
         final int evY = (int) ev.getY();
+
+        if (evX < 0 || evY < 0)
+        {
+            return true;
+        }
+
         switch (action) {
             case MotionEvent.ACTION_DOWN :
                 break;

@@ -20,24 +20,21 @@
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/upFrame"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-    <ImageView
+            android:layout_height="338dp">
+            <com.example.mateusz.goodgamesapplication.TouchImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        app:srcCompat="@drawable/falszerz_3"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:src="@drawable/falszerz_3"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:visibility="invisible"
         android:id="@+id/imageViewMaskUp" />
 
-    <ImageView
+            <!--app:srcCompat="@drawable/falszerz_1"-->
+    <com.example.mateusz.goodgamesapplication.TouchImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        app:srcCompat="@drawable/falszerz_1"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:src="@drawable/falszerz_1"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:id="@+id/imageViewUp" />
@@ -48,23 +45,19 @@
             android:id="@+id/downFrame"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-            <ImageView
+            <com.example.mateusz.goodgamesapplication.TouchImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                app:srcCompat="@drawable/falszerz_3"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
+                android:src="@drawable/falszerz_3"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:visibility="invisible"
                 android:id="@+id/imageViewMaskDown" />
 
-            <ImageView
+            <com.example.mateusz.goodgamesapplication.TouchImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                app:srcCompat="@drawable/falszerz_2"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
+                android:src="@drawable/falszerz_2"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:id="@+id/imageViewDown" />
