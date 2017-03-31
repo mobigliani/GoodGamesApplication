@@ -30,8 +30,8 @@ public class DisplayImageActivity extends AppCompatActivity
         setContentView(R.layout.activity_display_message);
 
         Intent intent = getIntent();
-        _name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        _syncImages = ! intent.getBooleanExtra(MainActivity.HARD_CHECKED, true);
+        _name = intent.getStringExtra(MainActivity.OPTS_PLAYER_NAME);
+        _syncImages = ! intent.getBooleanExtra(MainActivity.OPTS_SYNC_IMAGES, true);
 
         _topImage = (TouchImageView) findViewById (R.id.imageViewUp);
         _topImageMask = (TouchImageView) findViewById (R.id.imageViewMaskUp);
@@ -66,14 +66,6 @@ public class DisplayImageActivity extends AppCompatActivity
         });
 
         _mp = MediaPlayer.create(this, R.raw.ring01);
-/*
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
-        textView.setText(message);
-
-        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
-        layout.addView(textView);
-*/
     }
 
     public boolean onTouch(View view, MotionEvent ev) {
